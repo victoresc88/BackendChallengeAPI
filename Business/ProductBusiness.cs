@@ -23,7 +23,11 @@ namespace BackendChallengeAPI.Business
 
         public bool DeleteProduct(int id)
         {
-            throw new NotImplementedException();
+            return _products
+                .ToList()
+                .Remove(_products
+                    .Where(p => p.Id == id)
+                    .First());
         }
 
         public IEnumerable<Product> GetListOfAllProducts()

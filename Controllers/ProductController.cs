@@ -23,11 +23,17 @@ namespace BackendChallengeAPI.Controllers
             return _productBusiness.GetListOfAllProducts();
         }
 
-        [HttpGet]
-        [Route("estimatedTotalCost")]
+        [HttpGet("estimatedTotalCost")]
         public double GetEstimatedTotalCost([FromBody]EstimatedTotalCostViewModel estimatedTotalCostViewModel)
         {
             return _productBusiness.GetProductEstimatedTotalCost(estimatedTotalCostViewModel);
+        }
+
+        [HttpPost]
+        [Route("delete/{id:int}")]
+        public bool DeleteProduct(int id)
+        {
+            return _productBusiness.DeleteProduct(id);
         }
     }
 }
