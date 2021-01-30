@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using BackendChallengeAPI.Business;
 using BackendChallengeAPI.Models;
+using BackendChallengeAPI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackendChallengeAPI.Controllers
@@ -24,9 +25,9 @@ namespace BackendChallengeAPI.Controllers
 
         [HttpGet]
         [Route("estimatedTotalCost")]
-        public double GetEstimatedTotalCost(Product product, double estimatedConsumption)
+        public double GetEstimatedTotalCost([FromBody]EstimatedTotalCostViewModel estimatedTotalCostViewModel)
         {
-            return _productBusiness.GetProductEstimatedTotalCost(product, estimatedConsumption);
+            return _productBusiness.GetProductEstimatedTotalCost(estimatedTotalCostViewModel);
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using BackendChallengeAPI.Helper;
 using BackendChallengeAPI.Models;
+using BackendChallengeAPI.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BackendChallengeAPI.Business
 {
@@ -29,9 +31,13 @@ namespace BackendChallengeAPI.Business
             return _products;
         }
 
-        public double GetProductEstimatedTotalCost(Product product, double estimatedConsumption)
+        public double GetProductEstimatedTotalCost(EstimatedTotalCostViewModel estimatedTotalCostViewModel)
         {
-            return (product.DailyStandingCharge * 365 + estimatedConsumption * product.Rate) 
+            var product = _products
+                .Where(p => p.Id == estimatedTotalCostViewModel.Id)
+                .FirstOrDefault();
+
+            return (product.DailyStandingCharge * 365 + estimatedTotalCostViewModel.EstimatedConsumption * product.Rate) 
                 * product.ContractLength 
                 / 12;
         }

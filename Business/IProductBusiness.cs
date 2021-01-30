@@ -1,4 +1,5 @@
 ﻿using BackendChallengeAPI.Models;
+using BackendChallengeAPI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,6 @@ namespace BackendChallengeAPI.Business
         public bool AddProduct(Product product);
         public bool UpdateProduct(Product product);
         public bool DeleteProduct(int id);
-        public double GetProductEstimatedTotalCost(Product product, double estimatedConsumption);
+        public double GetProductEstimatedTotalCost(EstimatedTotalCostViewModel estimatedTotalCostViewModel);
     }
 }
