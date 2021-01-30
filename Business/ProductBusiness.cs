@@ -29,9 +29,11 @@ namespace BackendChallengeAPI.Business
             return _products;
         }
 
-        public decimal GetProductEstimatedTotalCost(Product product, decimal estimatedConsumption)
+        public double GetProductEstimatedTotalCost(Product product, double estimatedConsumption)
         {
-            throw new NotImplementedException();
+            return (product.DailyStandingCharge * 365 + estimatedConsumption * product.Rate) 
+                * product.ContractLength 
+                / 12;
         }
 
         public IEnumerable<Product> GetProductsByContractLength(int contractLength)
@@ -39,7 +41,7 @@ namespace BackendChallengeAPI.Business
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Product> GetProductsByRenewableRating(decimal rate)
+        public IEnumerable<Product> GetProductsByRenewableRating(double rate)
         {
             throw new NotImplementedException();
         }

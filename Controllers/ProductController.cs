@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using BackendChallengeAPI.Business;
 using BackendChallengeAPI.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace BackendChallengeAPI.Controllers
 {
@@ -20,10 +17,16 @@ namespace BackendChallengeAPI.Controllers
         }
 
         [HttpGet]
-
         public IEnumerable<Product> Get()
         {
             return _productBusiness.GetListOfAllProducts();
+        }
+
+        [HttpGet]
+        [Route("estimatedTotalCost")]
+        public double GetEstimatedTotalCost(Product product, double estimatedConsumption)
+        {
+            return _productBusiness.GetProductEstimatedTotalCost(product, estimatedConsumption);
         }
     }
 }
