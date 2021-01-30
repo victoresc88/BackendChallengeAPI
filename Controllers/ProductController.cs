@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BackendChallengeAPI.Business;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -10,9 +11,11 @@ namespace BackendChallengeAPI.Controllers
     [Route("[controller]")]
     public class ProductController : ControllerBase
     {
-        public ProductController()
+        public IProductBusiness _productBusiness;
+
+        public ProductController(IProductBusiness productBusiness)
         {
-            
+            _productBusiness = productBusiness;    
         }
 
         [HttpGet]
