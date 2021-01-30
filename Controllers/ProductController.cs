@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using BackendChallengeAPI.Business;
+using BackendChallengeAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace BackendChallengeAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("products")]
     public class ProductController : ControllerBase
     {
         public IProductBusiness _productBusiness;
@@ -19,9 +20,10 @@ namespace BackendChallengeAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<int> Get()
+
+        public IEnumerable<Product> Get()
         {
-            throw new NotImplementedException();
+            return _productBusiness.GetListOfAllProducts();
         }
     }
 }

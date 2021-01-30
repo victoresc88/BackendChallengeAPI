@@ -1,4 +1,5 @@
-﻿using BackendChallengeAPI.Models;
+﻿using BackendChallengeAPI.Helper;
+using BackendChallengeAPI.Models;
 using System;
 using System.Collections.Generic;
 
@@ -6,6 +7,13 @@ namespace BackendChallengeAPI.Business
 {
     public class ProductBusiness : IProductBusiness
     {
+        private IEnumerable<Product> _products;
+
+        public ProductBusiness()
+        {
+            _products = MockedProducts.GetListOfMockedProducts();
+        }
+
         public bool AddProduct(Product product)
         {
             throw new NotImplementedException();
@@ -18,7 +26,7 @@ namespace BackendChallengeAPI.Business
 
         public IEnumerable<Product> GetListOfAllProducts()
         {
-            throw new NotImplementedException();
+            return _products;
         }
 
         public decimal GetProductEstimatedTotalCost(Product product, decimal estimatedConsumption)
