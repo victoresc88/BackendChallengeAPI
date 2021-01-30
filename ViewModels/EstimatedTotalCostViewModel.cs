@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace BackendChallengeAPI.ViewModels
 {
     public class EstimatedTotalCostViewModel
     {
+        [JsonProperty("id")]
         public int Id { get; set; }
+        [JsonProperty("estimatedConsumption")]
         public double EstimatedConsumption { get; set; }
     }
 }
