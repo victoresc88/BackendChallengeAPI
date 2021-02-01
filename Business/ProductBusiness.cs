@@ -85,7 +85,9 @@ namespace BackendChallengeAPI.Business
             /* Typically would use Automapper to reduces lines of code, 
             but for the purpose of the exercise thought this would be fine */
             _products.ToList()
-                .Add(new Product { 
+                .Where(p => p.Id == product.Id)
+                .Select(p => new Product
+                {
                     Id = product.Id,
                     Name = product.Name,
                     Status = product.Status,
