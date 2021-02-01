@@ -31,7 +31,7 @@ namespace BackendChallengeAPI.Controllers
         }
 
         [HttpPost("add")]
-        public bool AddProduct([FromBody]Product product)
+        public bool AddProduct([FromBody]ProductViewModel product)
         {
             return _productBusiness.AddProduct(product);
         }
@@ -44,7 +44,7 @@ namespace BackendChallengeAPI.Controllers
         }
 
         [HttpPut("update")]
-        public bool UpdateProduct([FromBody]Product product)
+        public bool UpdateProduct([FromBody]ProductViewModel product)
         {
             return _productBusiness.UpdateProduct(product);
         }

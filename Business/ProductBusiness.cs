@@ -16,9 +16,22 @@ namespace BackendChallengeAPI.Business
             _products = MockedProducts.GetListOfMockedProducts();
         }
 
-        public bool AddProduct(Product product)
+        public bool AddProduct(ProductViewModel product)
         {
-            _products.ToList().Add(product);
+            /* Typically would use Automapper to reduces lines of code, 
+            but for the purpose of the exercise thought this would be fine */
+            _products.ToList()
+                .Add(new Product
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Status = product.Status,
+                    Rate = product.Rate,
+                    Renewable = product.Renewable,
+                    ContractLength = product.ContractLength,
+                    DailyStandingCharge = product.DailyStandingCharge,
+                    Supplier = product.Supplier
+                });
 
             return _products.Any(p => p.Id == product.Id);
         }
@@ -67,10 +80,21 @@ namespace BackendChallengeAPI.Business
             throw new NotImplementedException();
         }
 
-        public bool UpdateProduct(Product product)
+        public bool UpdateProduct(ProductViewModel product)
         {
+            /* Typically would use Automapper to reduces lines of code, 
+            but for the purpose of the exercise thought this would be fine */
             _products.ToList()
-                .Add(product);
+                .Add(new Product { 
+                    Id = product.Id,
+                    Name = product.Name,
+                    Status = product.Status,
+                    Rate = product.Rate,
+                    Renewable = product.Renewable,
+                    ContractLength = product.ContractLength,
+                    DailyStandingCharge = product.DailyStandingCharge,
+                    Supplier = product.Supplier
+                });
 
             return _products.ToList()
                 .Any(p => p.Id == product.Id);

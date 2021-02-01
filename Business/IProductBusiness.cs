@@ -11,8 +11,8 @@ namespace BackendChallengeAPI.Business
         public IEnumerable<Product> GetProductsByRenewableRating(double rate);
         public IEnumerable<Product> GetProductsByContractLength(int contractLength);
         public IEnumerable<Product> GetProductsBySupplier(string supplier);
-        public bool AddProduct(Product product);
-        public bool UpdateProduct(Product product);
+        public bool AddProduct(ProductViewModel product);
+        public bool UpdateProduct(ProductViewModel product);
         public bool DeleteProduct(int id);
         public double GetProductEstimatedTotalCost(EstimatedTotalCostViewModel estimatedTotalCostViewModel);
     }
