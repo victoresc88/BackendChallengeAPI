@@ -18,7 +18,8 @@ namespace BackendChallengeAPI.Business
 
         public bool AddProduct(Product product)
         {
-            throw new NotImplementedException();
+            _products.ToList().Add(product);   
+            return _products.Any(p => p.Id == product.Id);
         }
 
         public bool DeleteProduct(int id)
@@ -26,8 +27,7 @@ namespace BackendChallengeAPI.Business
             return _products
                 .ToList()
                 .Remove(_products
-                    .Where(p => p.Id == id)
-                    .First());
+                    .Where(p => p.Id == id).First());
         }
 
         public IEnumerable<Product> GetListOfAllProducts()

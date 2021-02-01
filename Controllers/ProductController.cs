@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using BackendChallengeAPI.Business;
 using BackendChallengeAPI.Models;
 using BackendChallengeAPI.ViewModels;
@@ -29,7 +30,13 @@ namespace BackendChallengeAPI.Controllers
             return _productBusiness.GetProductEstimatedTotalCost(estimatedTotalCostViewModel);
         }
 
-        [HttpPost]
+        [HttpPost("add")]
+        public bool AddProduct([FromBody]Product product)
+        {
+            return _productBusiness.AddProduct(product);
+        }
+
+        [HttpDelete]
         [Route("delete/{id:int}")]
         public bool DeleteProduct(int id)
         {
