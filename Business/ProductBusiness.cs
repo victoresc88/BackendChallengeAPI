@@ -1,7 +1,6 @@
 ﻿using BackendChallengeAPI.Helper;
 using BackendChallengeAPI.Models;
 using BackendChallengeAPI.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 

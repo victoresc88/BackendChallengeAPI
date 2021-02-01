@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using BackendChallengeAPI.Business;
 using BackendChallengeAPI.Models;
 using BackendChallengeAPI.ViewModels;
