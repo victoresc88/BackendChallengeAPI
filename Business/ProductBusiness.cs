@@ -55,24 +55,32 @@ namespace BackendChallengeAPI.Business
                 / 12;
         }
 
-        public List<Product> GetProductsByContractLength(int contractLength)
+        public List<Product> GetProductsByContractLength(int length)
         {
-            throw new NotImplementedException();
+            return _products
+                .Where(p => p.ContractLength == length)
+                .ToList();
         }
 
         public List<Product> GetProductsByRenewableRating(double rate)
         {
-            throw new NotImplementedException();
+            return _products
+                .Where(p => p.Renewable == rate)
+                .ToList();
         }
 
         public List<Product> GetProductsByStatus(string status)
         {
-            throw new NotImplementedException();
+            return _products
+                .Where(p => p.Status == status)
+                .ToList();
         }
 
         public List<Product> GetProductsBySupplier(string supplier)
         {
-            throw new NotImplementedException();
+            return _products
+                .Where(p => p.Supplier == supplier)
+                .ToList();
         }
 
         public bool UpdateProduct(ProductViewModel productViewModel)

@@ -9,7 +9,7 @@ namespace BackendChallengeAPI.Business
         public List<Product> GetListOfAllProducts();
         public List<Product> GetProductsByStatus(string status);
         public List<Product> GetProductsByRenewableRating(double rate);
-        public List<Product> GetProductsByContractLength(int contractLength);
+        public List<Product> GetProductsByContractLength(int length);
         public List<Product> GetProductsBySupplier(string supplier);
         public bool AddProduct(ProductViewModel product);
         public bool UpdateProduct(ProductViewModel product);

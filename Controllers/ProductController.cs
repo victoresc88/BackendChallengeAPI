@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BackendChallengeAPI.Controllers
 {
     [ApiController]
-    [Route("api")]
+    [Route("api/products")]
     public class ProductController : ControllerBase
     {
         public IProductBusiness _productBusiness;
@@ -18,7 +18,7 @@ namespace BackendChallengeAPI.Controllers
             _productBusiness = productBusiness;    
         }
 
-        [HttpGet("products")]
+        [HttpGet]
         public IEnumerable<Product> GetProducts()
         {
             return _productBusiness.GetListOfAllProducts();
