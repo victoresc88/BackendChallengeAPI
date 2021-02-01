@@ -24,6 +24,30 @@ namespace BackendChallengeAPI.Controllers
             return _productBusiness.GetListOfAllProducts();
         }
 
+        [HttpGet("contractLength/{length:int}")]
+        public IEnumerable<Product> GetProductsByContractLength(int length)
+        {
+            return _productBusiness.GetProductsByContractLength(length);
+        }
+
+        [HttpGet("renewableRating/{rate:int}")]
+        public IEnumerable<Product> GetProductsByRenewableRating(int rate)
+        {
+            return _productBusiness.GetProductsByRenewableRating(rate);
+        }
+
+        [HttpGet("status/{status}")]
+        public IEnumerable<Product> GetProductsByStatus(string status)
+        {
+            return _productBusiness.GetProductsByStatus(status);
+        }
+
+        [HttpGet("supplier/{supplier}")]
+        public IEnumerable<Product> GetProductsBySupplier(string supplier)
+        {
+            return _productBusiness.GetProductsBySupplier(supplier);
+        }
+
         [HttpGet("estimatedTotalCost")]
         public double GetEstimatedTotalCost([FromBody]EstimatedTotalCostViewModel estimatedTotalCostViewModel)
         {

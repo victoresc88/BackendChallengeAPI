@@ -36,7 +36,7 @@ namespace BackendChallengeAPI.Business
 
         public bool DeleteProduct(int id)
         {
-            return _products.RemoveAll(p => p.Id == id) == 1;
+            return _products.RemoveAll(p => p.Id == id) > 0;
         }
 
         public List<Product> GetListOfAllProducts()
