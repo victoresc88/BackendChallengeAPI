@@ -8,7 +8,7 @@ namespace BackendChallengeAPI.Helper
 {
     public static class MockedProducts
     {
-        public static IEnumerable<Product> GetListOfMockedProducts()
+        public static List<Product> GetListOfMockedProducts()
         {
             return new List<Product>
             {

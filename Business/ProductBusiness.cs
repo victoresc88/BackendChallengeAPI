@@ -9,7 +9,7 @@ namespace BackendChallengeAPI.Business
 {
     public class ProductBusiness : IProductBusiness
     {
-        private IEnumerable<Product> _products;
+        private List<Product> _products;
 
         public ProductBusiness()
         {
@@ -20,31 +20,26 @@ namespace BackendChallengeAPI.Business
         {
             /* Typically would use Automapper to reduces lines of code, 
             but for the purpose of the exercise thought this would be fine */
-            _products.ToList()
-                .Add(new Product
-                {
-                    Id = product.Id,
-                    Name = product.Name,
-                    Status = product.Status,
-                    Rate = product.Rate,
-                    Renewable = product.Renewable,
-                    ContractLength = product.ContractLength,
-                    DailyStandingCharge = product.DailyStandingCharge,
-                    Supplier = product.Supplier
-                });
+            _products.Add(new Product {
+                Id = product.Id,
+                Name = product.Name,
+                Status = product.Status,
+                Rate = product.Rate,
+                Renewable = product.Renewable,
+                ContractLength = product.ContractLength,
+                DailyStandingCharge = product.DailyStandingCharge,
+                Supplier = product.Supplier
+            });
 
             return _products.Any(p => p.Id == product.Id);
         }
 
         public bool DeleteProduct(int id)
         {
-            return _products
-                .ToList()
-                .Remove(_products
-                    .Where(p => p.Id == id).First());
+            return _products.RemoveAll(p => p.Id == id) == 1;
         }
 
-        public IEnumerable<Product> GetListOfAllProducts()
+        public List<Product> GetListOfAllProducts()
         {
             return _products;
         }
@@ -53,53 +48,52 @@ namespace BackendChallengeAPI.Business
         {
             var product = _products
                 .Where(p => p.Id == estimatedTotalCostViewModel.Id)
-                .FirstOrDefault();
+                .First();
 
             return (product.DailyStandingCharge * 365 + estimatedTotalCostViewModel.EstimatedConsumption * product.Rate) 
                 * product.ContractLength 
                 / 12;
         }
 
-        public IEnumerable<Product> GetProductsByContractLength(int contractLength)
+        public List<Product> GetProductsByContractLength(int contractLength)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Product> GetProductsByRenewableRating(double rate)
+        public List<Product> GetProductsByRenewableRating(double rate)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Product> GetProductsByStatus(string status)
+        public List<Product> GetProductsByStatus(string status)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Product> GetProductsBySupplier(string supplier)
+        public List<Product> GetProductsBySupplier(string supplier)
         {
             throw new NotImplementedException();
         }
 
-        public bool UpdateProduct(ProductViewModel product)
+        public bool UpdateProduct(ProductViewModel productViewModel)
         {
             /* Typically would use Automapper to reduces lines of code, 
             but for the purpose of the exercise thought this would be fine */
-            _products.ToList()
-                .Where(p => p.Id == product.Id)
-                .Select(p => new Product
-                {
-                    Id = product.Id,
-                    Name = product.Name,
-                    Status = product.Status,
-                    Rate = product.Rate,
-                    Renewable = product.Renewable,
-                    ContractLength = product.ContractLength,
-                    DailyStandingCharge = product.DailyStandingCharge,
-                    Supplier = product.Supplier
-                });
+            _products.RemoveAll(p => p.Id == productViewModel.Id);
+
+            _products.Add(new Product {
+                Id = productViewModel.Id,
+                Name = productViewModel.Name,
+                Status = productViewModel.Status,
+                Rate = productViewModel.Rate,
+                Renewable = productViewModel.Renewable,
+                ContractLength = productViewModel.ContractLength,
+                DailyStandingCharge = productViewModel.DailyStandingCharge,
+                Supplier = productViewModel.Supplier
+            });
 
             return _products.ToList()
-                .Any(p => p.Id == product.Id);
+                .Any(p => p.Id == productViewModel.Id);
         }
     }
 }
