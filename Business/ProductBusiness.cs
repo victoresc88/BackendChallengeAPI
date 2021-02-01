@@ -18,7 +18,8 @@ namespace BackendChallengeAPI.Business
 
         public bool AddProduct(Product product)
         {
-            _products.ToList().Add(product);   
+            _products.ToList().Add(product);
+
             return _products.Any(p => p.Id == product.Id);
         }
 
@@ -68,7 +69,11 @@ namespace BackendChallengeAPI.Business
 
         public bool UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            _products.ToList()
+                .Add(product);
+
+            return _products.ToList()
+                .Any(p => p.Id == product.Id);
         }
     }
 }

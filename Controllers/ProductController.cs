@@ -42,5 +42,12 @@ namespace BackendChallengeAPI.Controllers
         {
             return _productBusiness.DeleteProduct(id);
         }
+
+        [HttpPut("update")]
+        public bool UpdateProduct([FromBody]Product product)
+        {
+            return _productBusiness.UpdateProduct(product);
+        }
+        
     }
 }
