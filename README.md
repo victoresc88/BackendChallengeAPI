@@ -47,4 +47,4 @@ In order to test the API, you need to request following URI's:
       }
       
 ## Delete Product
-  DELETE => api/products/delete/{id:int}
+  * DELETE => api/products/delete/{id:int}
