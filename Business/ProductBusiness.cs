@@ -1,6 +1,7 @@
 ﻿using BackendChallengeAPI.Helper;
 using BackendChallengeAPI.Models;
 using BackendChallengeAPI.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,20 +19,28 @@ namespace BackendChallengeAPI.Business
 
         public bool AddProduct(ProductViewModel product)
         {
-            /* Typically would use Automapper to reduces lines of code, 
-            but for the purpose of the exercise thought this would be fine */
-            _products.Add(new Product {
-                Id = product.Id,
-                Name = product.Name,
-                Status = product.Status,
-                Rate = product.Rate,
-                Renewable = product.Renewable,
-                ContractLength = product.ContractLength,
-                DailyStandingCharge = product.DailyStandingCharge,
-                Supplier = product.Supplier
-            });
+            try
+            {
+                /* Typically would use Automapper to reduce lines of code, 
+                but for the purpose of the exercise thought this would be fine */
+                _products.Add(new Product
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Status = product.Status,
+                    Rate = product.Rate,
+                    Renewable = product.Renewable,
+                    ContractLength = product.ContractLength,
+                    DailyStandingCharge = product.DailyStandingCharge,
+                    Supplier = product.Supplier
+                });
 
-            return _products.Any(p => p.Id == product.Id);
+                return _products.Any(p => p.Id == product.Id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Product couldn't be added");
+            }
         }
 
         public bool DeleteProduct(int id)
