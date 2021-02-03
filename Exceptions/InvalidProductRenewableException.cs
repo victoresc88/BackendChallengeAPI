@@ -2,14 +2,14 @@
 
 namespace BackendChallengeAPI.Exceptions
 {
-    public class InvalidProductRenewableException : Exception
+    public class InvalidProductRenewableException : InvalidProductException
     {
         public InvalidProductRenewableException()
         {
         }
 
         public InvalidProductRenewableException(int renewable)
-            : base($"Invalid Renewable: {renewable}")
+            : base($"Renewable [{renewable}] not allowed")
         {
         }
     }

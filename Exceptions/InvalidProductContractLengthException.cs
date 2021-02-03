@@ -2,14 +2,14 @@
 
 namespace BackendChallengeAPI.Exceptions
 {
-    public class InvalidProductContractLengthException : Exception
+    public class InvalidProductContractLengthException : InvalidProductException
     {
         public InvalidProductContractLengthException()
         {
         }
 
         public InvalidProductContractLengthException(int length) 
-            : base($"Invalid Contract Length: {length}")
+            : base($"Contract Length [{length}] not allowed")
         {
         }
     }

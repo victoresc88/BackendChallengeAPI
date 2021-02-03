@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BackendChallengeAPI.Business;
+using BackendChallengeAPI.Exceptions;
 using BackendChallengeAPI.Models;
 using BackendChallengeAPI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -56,7 +58,14 @@ namespace BackendChallengeAPI.Controllers
         [HttpPost("add")]
         public bool AddProduct([FromBody]ProductViewModel product)
         {
-            return _productBusiness.AddProduct(product);
+            try
+            {
+                return _productBusiness.AddProduct(product);
+            }
+            catch(InvalidProductException ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpDelete]

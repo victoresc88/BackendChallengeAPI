@@ -2,14 +2,14 @@
 
 namespace BackendChallengeAPI.Exceptions
 {
-    public class InvalidProductIdException : Exception
+    public class InvalidProductIdException : InvalidProductException
     {
         public InvalidProductIdException()
         {
         }
 
         public InvalidProductIdException(int id)
-            : base($"Invalid Id: {id}")
+            : base($"Id [{id}] not allowed")
         {
         }
     }

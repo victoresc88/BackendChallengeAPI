@@ -2,14 +2,14 @@
 
 namespace BackendChallengeAPI.Exceptions
 {
-    public class InvalidProductRateException : Exception
+    public class InvalidProductRateException : InvalidProductException
     {
         public InvalidProductRateException()
         {
         }
 
         public InvalidProductRateException(double rate)
-            : base($"Invalid Rate: {rate}")
+            : base($"Rate [{rate}] not allowed")
         {
         }
     }

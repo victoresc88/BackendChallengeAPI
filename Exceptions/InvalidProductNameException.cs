@@ -2,14 +2,14 @@
 
 namespace BackendChallengeAPI.Exceptions
 {
-    public class InvalidProductNameException : Exception
+    public class InvalidProductNameException : InvalidProductException
     {
         public InvalidProductNameException()
         {
         }
 
         public InvalidProductNameException(string name)
-            : base($"Invalid Name: {name}")
+            : base($"Name [{name}] not allowed")
         {
         }
     }

@@ -1,4 +1,5 @@
-﻿using BackendChallengeAPI.Helper;
+﻿using BackendChallengeAPI.Exceptions;
+using BackendChallengeAPI.Helper;
 using BackendChallengeAPI.Models;
 using BackendChallengeAPI.ViewModels;
 using System;
@@ -37,9 +38,9 @@ namespace BackendChallengeAPI.Business
 
                 return _products.Any(p => p.Id == product.Id);
             }
-            catch (Exception ex)
+            catch (InvalidProductException ex)
             {
-                throw new Exception("Product couldn't be added");
+                throw ex;
             }
         }
 
