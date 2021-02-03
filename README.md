@@ -1,16 +1,20 @@
 ## BackendChallengeAPI
-In order to test the API, you need to start the project and REQUEST following URI's (Postman client recommended):
+This API has a series of endpoints that returning different results (check the ProductController class)
+In order to test the API, you need to start the project and REQUEST following URI's (Postman client recommended)
 
 ## List of Products
+Returns a list of all products (automatically mocked when starting the project):
   * GET => api/products
   
 ## List of Products filtered
+Returns a list of filtered products:
   * GET => api/products/contractlength/{length:int}
   * GET => api/products/renewableRating/{rate:int}
   * GET => api/products/status/{status:string}
   * GET => api/products/supplier/{supplier:string}
 
 ## Estimated total cost of product
+Returns the estimated total cost for a period of 12, given a Product id and an Estimated Consumption:
   * GET => api/products/estimatedTotalCost 
   * Send this json from the body in the REQUEST 
   ```json    
@@ -21,6 +25,7 @@ In order to test the API, you need to start the project and REQUEST following UR
   ```
       
 ## Add Product
+Adds a product to the list, returns true or false if it has been added or not:
   * POST => api/products/add
   * Send this json from the body in the REQUEST
   ```json
@@ -37,6 +42,7 @@ In order to test the API, you need to start the project and REQUEST following UR
    ```
     
 ## Update Product
+Updates a product with an existing Id, changing all the parameters modified, returns true or false:
    * PUT => api/products/update
    * Send this json from the body in the REQUEST
    ```json
@@ -53,4 +59,5 @@ In order to test the API, you need to start the project and REQUEST following UR
    ```
        
 ## Delete Product
+Deletes a product given a Product Id, returns true or false:
   * DELETE => api/products/delete/{id:int}
