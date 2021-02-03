@@ -12,6 +12,7 @@ namespace BackendChallengeAPI.Business
 
         public ProductBusiness()
         {
+            // Get mocked data
             _products = MockedProducts.GetListOfMockedProducts();
         }
 
@@ -45,13 +46,16 @@ namespace BackendChallengeAPI.Business
 
         public double GetProductEstimatedTotalCost(EstimatedTotalCostViewModel estimatedTotalCostViewModel)
         {
+            const int DAYS_OF_YEAR = 365;
+            const int PERIOD = 12;
+
             var product = _products
                 .Where(p => p.Id == estimatedTotalCostViewModel.Id)
                 .First();
 
-            return (product.DailyStandingCharge * 365 + estimatedTotalCostViewModel.EstimatedConsumption * product.Rate) 
+            return (product.DailyStandingCharge * DAYS_OF_YEAR + estimatedTotalCostViewModel.EstimatedConsumption * product.Rate) 
                 * product.ContractLength 
-                / 12;
+                / PERIOD;
         }
 
         public List<Product> GetProductsByContractLength(int length)
