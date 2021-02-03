@@ -2,25 +2,25 @@
 In order to test the API, you need to request following URI's:
 
 ## List of Products
-  GET => api/products
+  * GET => api/products
   
 ## List of Products filtered
-  GET => api/products/contractlength/{length:int}
-  GET => api/products/renewableRating/{rate:int}
-  GET => api/products/status/{status}
-  GET => api/products/supplier/{supplier}
+  * GET => api/products/contractlength/{length:int}
+  * GET => api/products/renewableRating/{rate:int}
+  * GET => api/products/status/{status}
+  * GET => api/products/supplier/{supplier}
 
 ## Estimated total cost of product
-  GET => api/products/estimatedTotalCost ==> 
-    - Send this json from the body in the REQUEST 
+  * GET => api/products/estimatedTotalCost 
+  * Send this json from the body in the REQUEST 
       { 
         "id": int /* Product id to check cost */, 
         "estimatedConsumption": double /* Estimated consumption to calculate the cost */
       }
       
 ## Add Product
-  POST => api/products/add
-    - Send this json from the body in teh REQUEST
+  * POST => api/products/add
+  * Send this json from the body in teh REQUEST
       {
         "id": int,
         "supplier" : string,
@@ -33,8 +33,8 @@ In order to test the API, you need to request following URI's:
       }
     
 ## Update Product
-    PUT => api/products/update
-    - Send this json from the body in teh REQUEST
+    * PUT => api/products/update
+    * Send this json from the body in teh REQUEST
       {
         "id": int,
         "supplier" : string,
