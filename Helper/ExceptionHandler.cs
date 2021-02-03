@@ -17,6 +17,8 @@ namespace BackendChallengeAPI.Helper
             ValidateSupplier(product.Supplier);    
         }
 
+        /* More conditions could be added in the 
+         * following methods in order to test */
         public static void ValidateId(int id)
         {
             if (id <= 0)
