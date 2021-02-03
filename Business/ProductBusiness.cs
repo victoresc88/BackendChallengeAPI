@@ -22,6 +22,8 @@ namespace BackendChallengeAPI.Business
         {
             try
             {
+                ExceptionHandler.ValidateProduct(product);
+
                 /* Typically would use Automapper to reduce lines of code, 
                 but for the purpose of the exercise thought this would be fine */
                 _products.Add(new Product
@@ -98,23 +100,33 @@ namespace BackendChallengeAPI.Business
 
         public bool UpdateProduct(ProductViewModel productViewModel)
         {
-            /* Typically would use Automapper to reduces lines of code, 
-            but for the purpose of the exercise thought this would be fine */
-            _products.RemoveAll(p => p.Id == productViewModel.Id);
+            try
+            {
+                ExceptionHandler.ValidateProduct(productViewModel);
 
-            _products.Add(new Product {
-                Id = productViewModel.Id,
-                Name = productViewModel.Name,
-                Status = productViewModel.Status,
-                Rate = productViewModel.Rate,
-                Renewable = productViewModel.Renewable,
-                ContractLength = productViewModel.ContractLength,
-                DailyStandingCharge = productViewModel.DailyStandingCharge,
-                Supplier = productViewModel.Supplier
-            });
+                /* Typically would use Automapper to reduces lines of code, 
+                but for the purpose of the exercise thought this would be fine */
+                _products.RemoveAll(p => p.Id == productViewModel.Id);
 
-            return _products.ToList()
-                .Any(p => p.Id == productViewModel.Id);
+                _products.Add(new Product
+                {
+                    Id = productViewModel.Id,
+                    Name = productViewModel.Name,
+                    Status = productViewModel.Status,
+                    Rate = productViewModel.Rate,
+                    Renewable = productViewModel.Renewable,
+                    ContractLength = productViewModel.ContractLength,
+                    DailyStandingCharge = productViewModel.DailyStandingCharge,
+                    Supplier = productViewModel.Supplier
+                });
+
+                return _products.ToList()
+                    .Any(p => p.Id == productViewModel.Id);
+            }
+            catch (InvalidProductException ex)
+            {
+                throw ex;
+            }
         }
     }
 }
