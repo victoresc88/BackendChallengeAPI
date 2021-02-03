@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BackendChallengeAPI.Business;
 using BackendChallengeAPI.Exceptions;
 using BackendChallengeAPI.Models;
@@ -28,25 +27,53 @@ namespace BackendChallengeAPI.Controllers
         [HttpGet("contractLength/{length:int}")]
         public IEnumerable<Product> GetProductsByContractLength(int length)
         {
-            return _productBusiness.GetProductsByContractLength(length);
+            try
+            {
+                return _productBusiness.GetProductsByContractLength(length);
+            }
+            catch(InvalidProductException ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpGet("renewableRating/{rate:int}")]
         public IEnumerable<Product> GetProductsByRenewableRating(int rate)
         {
-            return _productBusiness.GetProductsByRenewableRating(rate);
+            try
+            {
+                return _productBusiness.GetProductsByRenewableRating(rate);
+            }
+            catch (InvalidProductException ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpGet("status/{status}")]
         public IEnumerable<Product> GetProductsByStatus(string status)
         {
-            return _productBusiness.GetProductsByStatus(status);
+            try
+            {
+                return _productBusiness.GetProductsByStatus(status);
+            }
+            catch (InvalidProductException ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpGet("supplier/{supplier}")]
         public IEnumerable<Product> GetProductsBySupplier(string supplier)
         {
-            return _productBusiness.GetProductsBySupplier(supplier);
+            try
+            {
+                return _productBusiness.GetProductsBySupplier(supplier);
+            }
+            catch (InvalidProductException ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpGet("estimatedTotalCost")]
@@ -72,14 +99,27 @@ namespace BackendChallengeAPI.Controllers
         [Route("delete/{id:int}")]
         public bool DeleteProduct(int id)
         {
-            return _productBusiness.DeleteProduct(id);
+            try
+            {
+                return _productBusiness.DeleteProduct(id);
+            }
+            catch (InvalidProductException ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpPut("update")]
         public bool UpdateProduct([FromBody]ProductViewModel product)
         {
-            return _productBusiness.UpdateProduct(product);
+            try
+            {
+                return _productBusiness.UpdateProduct(product);
+            }
+            catch(InvalidProductException ex)
+            {
+                throw ex;
+            }
         }
-        
     }
 }
