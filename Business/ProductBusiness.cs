@@ -59,16 +59,29 @@ namespace BackendChallengeAPI.Business
 
         public double GetProductEstimatedTotalCost(EstimatedTotalCostViewModel estimatedTotalCostViewModel)
         {
-            const int DAYS_OF_YEAR = 365;
-            const int PERIOD = 12;
+            try
+            {
+                const int DAYS_OF_YEAR = 365;
+                const int PERIOD = 12;
 
-            var product = _products
-                .Where(p => p.Id == estimatedTotalCostViewModel.Id)
-                .First();
+                ExceptionHandler.ValidateId(estimatedTotalCostViewModel.Id);
 
-            return (product.DailyStandingCharge * DAYS_OF_YEAR + estimatedTotalCostViewModel.EstimatedConsumption * product.Rate) 
-                * product.ContractLength 
-                / PERIOD;
+                if (_products.Any(p => p.Id == estimatedTotalCostViewModel.Id))
+                {
+                    var product = _products
+                    .Where(p => p.Id == estimatedTotalCostViewModel.Id)
+                    .First();
+
+                    return (product.DailyStandingCharge * DAYS_OF_YEAR + estimatedTotalCostViewModel.EstimatedConsumption * product.Rate) * product.ContractLength / PERIOD;
+                }
+                else
+                    throw new InvalidProductException("Product not found");
+                
+            }
+            catch (InvalidProductException ex)
+            {
+                throw ex;
+            }
         }
 
         public List<Product> GetProductsByContractLength(int length)
@@ -143,22 +156,28 @@ namespace BackendChallengeAPI.Business
 
                 /* Typically would use Automapper to reduces lines of code, 
                 but for the purpose of the exercise thought this would be fine */
-                _products.RemoveAll(p => p.Id == productViewModel.Id);
-
-                _products.Add(new Product
+                if (_products.ToList().Any(p => p.Id == productViewModel.Id))
                 {
-                    Id = productViewModel.Id,
-                    Name = productViewModel.Name,
-                    Status = productViewModel.Status,
-                    Rate = productViewModel.Rate,
-                    Renewable = productViewModel.Renewable,
-                    ContractLength = productViewModel.ContractLength,
-                    DailyStandingCharge = productViewModel.DailyStandingCharge,
-                    Supplier = productViewModel.Supplier
-                });
+                    _products.RemoveAll(p => p.Id == productViewModel.Id);
 
-                return _products.ToList()
+                    _products.Add(new Product
+                    {
+                        Id = productViewModel.Id,
+                        Name = productViewModel.Name,
+                        Status = productViewModel.Status,
+                        Rate = productViewModel.Rate,
+                        Renewable = productViewModel.Renewable,
+                        ContractLength = productViewModel.ContractLength,
+                        DailyStandingCharge = productViewModel.DailyStandingCharge,
+                        Supplier = productViewModel.Supplier
+                    });
+
+                    return _products.ToList()
                     .Any(p => p.Id == productViewModel.Id);
+                }
+                else
+                    throw new InvalidProductException("Product not found");
+                
             }
             catch (InvalidProductException ex)
             {
