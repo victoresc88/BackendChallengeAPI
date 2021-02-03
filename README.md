@@ -1,5 +1,5 @@
 ## BackendChallengeAPI
-In order to test the API, you need to request following URI's:
+In order to test the API, you need to start the project and REQUEST following URI's (Postman client recommended):
 
 ## List of Products
   * GET => api/products
